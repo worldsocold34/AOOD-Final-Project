@@ -38,20 +38,29 @@ public class Player {
 		maxHP =+ points;
 	}
 	
-	public void increaseCount() {
-		count++;
-	}
-	
 	public int getHP() {
 		return HP;
 	}
 	
-	public void getDefense() {
-		// display player stats
+	public int getMaxHP() {
+		return maxHP;
+	}
+	
+	public int[] getDefense() {
+		return defense;
 	}
 	
 	public int getPlayerCount() {
 		return count;
 	}
-
+	
+	public void levelUp() {
+		increaseMaxHP(count);
+		count++;
+	}
+	
+	public void levelUp(int weapon) {
+		increaseWeaponsRange(weapon);
+		count++;
+	}
 }
