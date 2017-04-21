@@ -6,16 +6,19 @@ public class Monster {
 	private int HP;
 	private int minAttack;
 	private int maxAttack;
-	private int element;
 	
-	public Monster() {
-		HP = 100;
-		maxHP = 100;
+	private int element;
+	private Player player;
+	
+	public Monster(Player player) {
+		HP = 100 + Game.count;
+		maxHP = 100 + Game.count;
 		element = (int)(4*Math.random());
 		minAttack = 5 + Game.count;
 		maxAttack = 10 + Game.count;
 		defense[element] = 50;
-		
+		defense[getReverseElement(element)] = 150;
+		this.player = player;
 	}
 	
 	public int getReverseElement(int element) {
@@ -40,20 +43,16 @@ public class Monster {
 	
 	public int attack(int playerDefense[]) {
 		int damage = (int)((maxAttack-minAttack+1)*Math.random()+minAttack);
+		player.takeDamage(damage*playerDefense[element]/100);
 		return damage*playerDefense[element]/100;
+	}
+
+	public void takeDamage(int dmg) {
+		HP-=dmg;
 	}
 	
 	public void heal() {
 		HP += (int)(6*Math.random()+5);
-	}
-	
-	public void increaseWeaponsRange(int weapon) {
-		weaponsRange[0][weapon]++;
-		weaponsRange[1][weapon]++;
-	}
-	
-	public void increaseMaxHP(int points) {
-		maxHP =+ points;
 	}
 	
 	public int getHP() {
@@ -66,19 +65,5 @@ public class Monster {
 	
 	public int[] getDefense() {
 		return defense;
-	}
-	
-	public int getPlayerCount() {
-		return count;
-	}
-	
-	public void levelUp() {
-		increaseMaxHP(count);
-		count++;
-	}
-	
-	public void levelUp(int weapon) {
-		increaseWeaponsRange(weapon);
-		count++;
 	}
 }
