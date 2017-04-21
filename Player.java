@@ -1,19 +1,12 @@
 
 public class Player {
-
-	/**
-	 * @param args
-	 */
 	
-	private String[] elements = {"fire", "ice", "earth", "wind"};
 	private int[] defense = {100, 100, 100, 100};//player defense percentages
 	private int[][] weaponsRange = {{5, 5, 5, 5},{10, 10, 10, 10}};//lower range of weapon, higher range of weapon
 	private int maxHP;
 	private int HP;
-	private int count;
 	
 	public Player() {
-		count = 0;
 		HP = 100;
 		maxHP = 100;
 	}
@@ -34,8 +27,16 @@ public class Player {
 		weaponsRange[1][weapon]++;
 	}
 	
+	public void takeDamage(int dmg) {
+		HP-=dmg;
+	}
+	
 	public void increaseMaxHP(int points) {
-		maxHP =+ points;
+		maxHP = points;
+	}
+	
+	public int[][] getWeaponsRange() {
+		return weaponsRange;
 	}
 	
 	public int getHP() {
@@ -50,17 +51,11 @@ public class Player {
 		return defense;
 	}
 	
-	public int getPlayerCount() {
-		return count;
+	public void levelUp() {//to increase maxhp
+		increaseMaxHP(Game.count);
 	}
 	
-	public void levelUp() {
-		increaseMaxHP(count);
-		count++;
-	}
-	
-	public void levelUp(int weapon) {
+	public void levelUp(int weapon) {//increase weapons dmg
 		increaseWeaponsRange(weapon);
-		count++;
 	}
 }
