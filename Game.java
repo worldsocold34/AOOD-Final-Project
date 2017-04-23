@@ -31,15 +31,25 @@ public class Game {
 		if (monster.getHP() <= 0) {
 			return true;
 		}
+		int monsterTurn = monster.takeTurn();
 		int monsterDmg = monster.attack(player.getDefense());
-		player.takeDamage(monsterDmg);
+		if(monsterTurn==0) {
+			player.takeDamage(monsterDmg);
+		} else {
+			monster.heal();
+		}
 		return false;		
 	}
 	
 	public boolean turn(Monster monster) {//when player heals
 		player.heal();
+		int monsterTurn = monster.takeTurn();
 		int monsterDmg = monster.attack(player.getDefense());
-		player.takeDamage(monsterDmg);
+		if(monsterTurn==0) {
+			player.takeDamage(monsterDmg);
+		} else {
+			monster.heal();
+		}
 		return false;
 	}
 	
