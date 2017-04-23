@@ -2,12 +2,27 @@
 public class Game {
 
 	public static int count;
-	public static String[] elements = {"fire", "ice", "earth", "wind"};
+	public static String[] elements = {"fire", "water", "earth", "air"};
+	public boolean gameOver;
 	private Player player;
 	public Game() {
-		count = 0;
+		count = 1;
 		player = new Player();
-		play(player);
+		gameOver = false;
+		play();
+	}
+	
+	public void play() {
+		while(!gameOver) {
+			gameOver = round();
+			if(gameOver) {
+				//end game screen
+			} else {
+				levelUp(method to select health or attack());
+				count++;
+				round();
+			}
+		}
 	}
 	
 	public boolean turn(Monster monster, int weapon) {//when player attacks, return if won
@@ -28,7 +43,7 @@ public class Game {
 		return false;
 	}
 	
-	public void play(Player player) {//returns if player won the level
+	public void round() {//returns if player won the level
 		Monster monster = new Monster(player);
 		boolean lost = false;
 		boolean finished = false;
