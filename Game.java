@@ -10,26 +10,39 @@ public class Game {
 		play(player);
 	}
 	
-	public void turn(Monster monster, int weapon) {//when player attacks
-		while((player.getHP()>0)&&(monster.getHP()>0)) {
-			int playerDmg = player.attack(weapon, monster.getDefense());
-			monster.takeDamage(playerDmg);
-			int monsterDmg = monster.attack(player.getDefense());
-			player.takeDamage(monsterDmg);
+	public boolean turn(Monster monster, int weapon) {//when player attacks, return if won
+		int playerDmg = player.attack(weapon, monster.getDefense());
+		monster.takeDamage(playerDmg);
+		if (monster.getHP() <= 0) {
+			return true;
 		}
-		
+		int monsterDmg = monster.attack(player.getDefense());
+		player.takeDamage(monsterDmg);
+		return false;		
 	}
 	
-	public void turn(Monster monster) {
-		while((player.getHP()>0)&&(monster.getHP()>0)) {
-			
-		}
-		
+	public boolean turn(Monster monster) {//when player heals
+		player.heal();
+		int monsterDmg = monster.attack(player.getDefense());
+		player.takeDamage(monsterDmg);
+		return false;
 	}
 	
-	public void play(Player player) {
+	public void play(Player player) {//returns if player won the level
 		Monster monster = new Monster(player);
-		
+		boolean lost = false;
+		boolean finished = false;
+		boolean won = false;
+		while(!finished) {
+			//choose to attack or heal
+			won = turn(attack or heal);
+			if(won) {//if player won already, finished = true, won = true
+				finished = true;
+			} else if (player.getHP()<=0) {//if player lost, finished = true, won = false
+				finished = true;
+			}
+		}
+		return won;		
 	}
 
 }
