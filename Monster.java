@@ -41,6 +41,15 @@ public class Monster {
 		return reverse;
 	}
 	
+	public int takeTurn() {
+		if(player health is less than minrange
+		else if (monster health is less than player minrange
+		else if (player health is less than maxrange
+		else if (monster health 100%, attack
+		else if (monster health less than 50% then 50 + missing% chance heal
+		else (90% attack, 10% heal
+		
+	}
 	public int attack(int playerDefense[]) {
 		int damage = (int)((maxAttack-minAttack+1)*Math.random()+minAttack);
 		player.takeDamage(damage*playerDefense[element]/100);
@@ -51,8 +60,10 @@ public class Monster {
 		HP-=dmg;
 	}
 	
-	public void heal() {
-		HP += (int)(6*Math.random()+5);
+	public int heal() {
+		int healed = (int)(6*Math.random()+5);
+		HP += healed;
+		return HP; 
 	}
 	
 	public int getHP() {
