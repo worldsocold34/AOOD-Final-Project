@@ -22,7 +22,7 @@ public class Player {
 		HP += (int)(6*Math.random()+5);
 	}
 	
-	public void increaseWeaponsRange(int weapon) {
+	private void increaseWeaponsRange(int weapon) {
 		weaponsRange[0][weapon]++;
 		weaponsRange[1][weapon]++;
 	}
@@ -31,7 +31,7 @@ public class Player {
 		HP-=dmg;
 	}
 	
-	public void increaseMaxHP(int points) {
+	private void increaseMaxHP(int points) {
 		maxHP = points;
 	}
 	
