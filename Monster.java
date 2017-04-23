@@ -41,7 +41,7 @@ public class Monster {
 		return reverse;
 	}
 	
-	public int takeTurn() {
+	public int takeTurn() {//return 0 = attack, 1 = heal
 		if(player health is less than minrange
 		else if (monster health is less than player minrange
 		else if (player health is less than maxrange
