@@ -48,7 +48,6 @@ public class Monster {
 		else if (monster health 100%, attack
 		else if (monster health less than 50% then 50 + missing% chance heal
 		else (90% attack, 10% heal
-		
 	}
 	public int attack(int playerDefense[]) {
 		int damage = (int)((maxAttack-minAttack+1)*Math.random()+minAttack);
