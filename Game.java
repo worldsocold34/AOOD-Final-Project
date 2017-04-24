@@ -13,16 +13,17 @@ public class Game {
 	}
 	
 	public void play() {
+		gameOver = round();
 		while(!gameOver) {
-			gameOver = round();
 			if(gameOver) {
 				//end game screen
 			} else {
 				levelUp(method to select health or attack());
 				count++;
-				round();
+				gameOver = round();
 			}
 		}
+		//end game screen
 	}
 	
 	public boolean turn(Monster monster, int weapon) {//when player attacks, return if won
@@ -53,14 +54,18 @@ public class Game {
 		return false;
 	}
 	
-	public void round() {//returns if player won the level
+	public boolean round() {//returns if player won the level
 		Monster monster = new Monster(player);
 		boolean lost = false;
 		boolean finished = false;
 		boolean won = false;
 		while(!finished) {
-			//choose to attack or heal
-			won = turn(attack or heal);
+			int choice = //choose to attack or heal
+			if(choice==-1) {
+				won = turn(monster);
+			} else {
+				won = turn(monster, choice);
+			}
 			if(won) {//if player won already, finished = true, won = true
 				finished = true;
 			} else if (player.getHP()<=0) {//if player lost, finished = true, won = false
