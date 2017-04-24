@@ -42,12 +42,29 @@ public class Monster {
 	}
 	
 	public int takeTurn() {//return 0 = attack, 1 = heal
-		if(player health is less than minrange
-		else if (monster health is less than player minrange
-		else if (player health is less than maxrange
-		else if (monster health 100%, attack
-		else if (monster health less than 50% then 50 + missing% chance heal
-		else (90% attack, 10% heal
+		if(player.getHP() < minAttack) { //player health is less than minrange
+			return 0;
+		} else if (HP < player.getWeaponsRange()[0][element]) { //monster health is less than player minrange
+			return 1;
+		} else if (player.getHP() < maxAttack) { //player health is less than maxrange
+			return 0;
+		} else if (HP == maxHP) { //monster health 100%, attack
+			return 0;
+		} else if (HP < maxHP/2) { //monster health less than 50% then 50 + missing% chance heal
+			int chance = 50 + (maxHP/2 - HP)/maxHP;
+			int action = (int)(100*Math.random() + 1);
+			if(action<=chance) {
+				return 1;
+			}
+			return 0;
+		} else {// 90% attack, 10% heal
+			int action = (int)(10*Math.random() + 1);
+			if(action==1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 	}
 	public int attack(int playerDefense[]) {
 		int damage = (int)((maxAttack-minAttack+1)*Math.random()+minAttack);
