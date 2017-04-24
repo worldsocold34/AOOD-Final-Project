@@ -1,4 +1,3 @@
-
 public class Player {
 	
 	private int[] defense = {100, 100, 100, 100};//player defense percentages
